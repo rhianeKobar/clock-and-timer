@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    
+}
+#clock{
+    margin: 0 auto;
+    width: 600px;
+    height: 200px;
+    border: solid black 5px;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: darkgoldenrod;
+}
+#longDate{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: row;
+}
+#time{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: row;
+}
+#timer{
+    display: flex;
+    font-size: 2rem;
+    flex-direction: row;
+}
+#buttons{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: row;
+}
+button{
+    border: solid black 1px;
+    border-radius: 5px;
+    background-color: darkgoldenrod;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    padding: 10px 20px; 
+    color: black;
+}
