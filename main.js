@@ -158,8 +158,8 @@ function getLap(){
 }
 //event handlers
 startBtn.addEventListener("click", startTimer)
-startBtn.addEventListener("touchstart",startTimer)
+startBtn.addEventListener("touchmove",startTimer)
 stopBtn.addEventListener("click", stopTimer)
-stopBtn.addEventListener("touchstart", stopTimer)
+stopBtn.addEventListener("touchmove", stopTimer)
 resetBtn.addEventListener("click", resetTimer)
-resetBtn.addEventListener("touchstart", resetTimer)
+resetBtn.addEventListener("touchmove", resetTimer)
