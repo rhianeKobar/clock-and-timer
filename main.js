@@ -14,18 +14,10 @@ let timeMinutes = document.getElementById("timeMinutes");
 let timeSeconds = document.getElementById("timeSeconds");
 let longTime = document.getElementById("time");
 
-let timerMinutes = document.getElementById("timerMinutes");
-let timerSeconds = document.getElementById("timerSeconds");
-let timerMilli = document.getElementById("timerMilli");
-let startBtn = document.getElementById("start")
-let stopBtn = document.getElementById("stop")
-let resetBtn = document.getElementById("reset")
 
 
 //day
 //get day of the week and break the name of the day
-
-
 function getTime() {
     let dateTime = new Date();
 
@@ -104,28 +96,25 @@ function getTime() {
     longDate.innerHTML = day + " " + date + " " + month + " ," + year
 
     //time
-    //hours
     timeHours.innerHTML = dateTime.getHours();
-    //minutes
     timeMinutes.innerHTML = dateTime.getMinutes()< 10? "0" +dateTime.getMinutes(): dateTime.getMinutes();
-    //seconds
     timeSeconds.innerHTML = dateTime.getSeconds()< 10? "0" +dateTime.getSeconds(): dateTime.getSeconds();
 }
-
-function freezeTime(){
-    const timerTime = new Date()
-    
-    const startMin = timerTime.getMinutes();
-    const startSec = timerTime.getSeconds();
-    const startMilli = timerTime.getMilliseconds();
-    return {startMin, startSec, startMilli};
-}
-
+//timer variables
+let timerMinutes = document.getElementById("timerMinutes");
+let timerSeconds = document.getElementById("timerSeconds");
+let timerMilli = document.getElementById("timerMilli");
+let startBtn = document.getElementById("start")
+let stopBtn = document.getElementById("stop")
+let resetBtn = document.getElementById("reset")
+let startTiming;
 let startMin = 0;
 let startSec = 0;
 let startMilli = 0;
+let lapArray =[];
 
-function startTimer() {
+//timer functions
+function incrementTimer() {
     startMilli++;
     if (startMilli === 1000) {
         startMilli = 0;
@@ -139,14 +128,15 @@ function startTimer() {
     timerSeconds.innerHTML = startSec < 10 ? "0"+startSec : startSec;
     timerMilli.innerHTML = startMilli ;
 }
-function myTimer(){
-    setInterval(startTimer, 1)
+function startTimer(){
+    startTiming = setInterval(incrementTimer, 1)
 }
-startBtn.addEventListener("click", myTimer)
+function stopTimer() {
+    clearInterval(startTiming);
+}
+function resetTimer(){
 
-function stopTimer(event){
-
-
+    stopTimer();
     startMin = 0;
     startSec = 0;
     startMilli = 0;
@@ -156,6 +146,20 @@ function stopTimer(event){
     timerMilli.innerHTML = startMilli;
     
 }
+function getLap(){
+    let lapMin = timerMinutes.textContent 
+    lapMin < 10 ? "0"+lapMin : lapMin;
+    let lapSec = timerSeconds.textContent
+    lapSec < 10 ? "0"+lapSec : lapSec;
+    let lapMilli = timerMilli.textContent
+    lapMilli < 10 ? "0"+lapMilli : lapMilli;
 
-
-resetBtn.addEventListener("click", stopTimer(myTimer))
+    
+}
+//event handlers
+startBtn.addEventListener("click", startTimer)
+startBtn.addEventListener("touchstart",startTimer)
+stopBtn.addEventListener("click", stopTimer)
+stopBtn.addEventListener("touchstart", stopTimer)
+resetBtn.addEventListener("click", resetTimer)
+resetBtn.addEventListener("touchstart", resetTimer)
