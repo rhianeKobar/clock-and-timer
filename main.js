@@ -154,6 +154,11 @@ function getLap(){
     let lapMilli = timerMilli.textContent
     lapMilli < 10 ? "0"+lapMilli : lapMilli;
 
+    lapArray.push(`${lapMin}:${lapSec}:${lapMilli}`);
+    return lapArray;
+    
+}
+function displayLap(){
     
 }
 //event handlers
