@@ -103,21 +103,24 @@ function getTime() {
 //timer variables
 let timerMinutes = document.getElementById("timerMinutes");
 let timerSeconds = document.getElementById("timerSeconds");
-let timerMilli = document.getElementById("timerMilli");
+let timerHunds = document.getElementById("timerHunds");
+timerMinutes.innerHTML = "00";
+timerSeconds.innerHTML = "00";
+timerHunds.innerHTML = "00";
 let startBtn = document.getElementById("start")
 let stopBtn = document.getElementById("stop")
 let resetBtn = document.getElementById("reset")
 let startTiming;
 let startMin = 0;
 let startSec = 0;
-let startMilli = 0;
+let startHunds = 0;
 let lapArray =[];
 
 //timer functions
 function incrementTimer() {
-    startMilli++;
-    if (startMilli === 1000) {
-        startMilli = 0;
+    startHunds++;
+    if (startHunds === 100) {
+        startHunds = 0;
         startSec++;
     }
     if (startSec === 60) {
@@ -126,10 +129,10 @@ function incrementTimer() {
     }
     timerMinutes.innerHTML = startMin < 10 ? "0"+startMin : startMin;
     timerSeconds.innerHTML = startSec < 10 ? "0"+startSec : startSec;
-    timerMilli.innerHTML = startMilli ;
+    timerHunds.innerHTML = startHunds ;
 }
 function startTimer(){
-    startTiming = setInterval(incrementTimer, 1)
+    startTiming = setInterval(incrementTimer, 10)
 }
 function stopTimer() {
     clearInterval(startTiming);
@@ -139,11 +142,11 @@ function resetTimer(){
     stopTimer();
     startMin = 0;
     startSec = 0;
-    startMilli = 0;
+    startHunds = 0;
 
-    timerMinutes.innerHTML = startMin;
-    timerSeconds.innerHTML = startSec;
-    timerMilli.innerHTML = startMilli;
+    timerMinutes.innerHTML = "00";
+    timerSeconds.innerHTML = "00";
+    timerHunds.innerHTML = "00";
     
 }
 function getLap(){
@@ -151,10 +154,10 @@ function getLap(){
     lapMin < 10 ? "0"+lapMin : lapMin;
     let lapSec = timerSeconds.textContent
     lapSec < 10 ? "0"+lapSec : lapSec;
-    let lapMilli = timerMilli.textContent
-    lapMilli < 10 ? "0"+lapMilli : lapMilli;
+    let lapHunds = timerHunds.textContent
+    lapHunds < 10 ? "0"+lapHunds : lapHunds;
 
-    lapArray.push(`${lapMin}:${lapSec}:${lapMilli}`);
+    lapArray.push(`${lapMin}:${lapSec}:${lapHunds}`);
     return lapArray;
     
 }
