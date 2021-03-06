@@ -107,9 +107,12 @@ let timerHunds = document.getElementById("timerHunds");
 timerMinutes.innerHTML = "00";
 timerSeconds.innerHTML = "00";
 timerHunds.innerHTML = "00";
+let body = document.getElementsByTagName('body') 
 let startBtn = document.getElementById("start")
 let stopBtn = document.getElementById("stop")
 let resetBtn = document.getElementById("reset")
+let lapBtn = document.getElementById("lap")
+let ol = document.getElementById('lapOl')
 let startTiming;
 let startMin = 0;
 let startSec = 0;
@@ -119,7 +122,7 @@ let lapArray =[];
 //timer functions
 function incrementTimer() {
     startHunds++;
-    if (startHunds === 100) {
+    if (startHunds === 10) {
         startHunds = 0;
         startSec++;
     }
@@ -132,13 +135,19 @@ function incrementTimer() {
     timerHunds.innerHTML = startHunds ;
 }
 function startTimer(){
-    startTiming = setInterval(incrementTimer, 10)
+    document.body.style.backgroundImage = 'url(/Resources/BlossomRunnning.gif)'
+    startTiming = setInterval(incrementTimer, 100)
 }
 function stopTimer() {
+    document.body.style.backgroundImage = 'url(/Resources/freeze.gif)'
     clearInterval(startTiming);
 }
 function resetTimer(){
-
+    
+    lapArray.splice(0,lapArray.length)
+    while (lapOl.firstChild) {
+        lapOl.removeChild(lapOl.firstChild);
+    }
     stopTimer();
     startMin = 0;
     startSec = 0;
@@ -147,22 +156,31 @@ function resetTimer(){
     timerMinutes.innerHTML = "00";
     timerSeconds.innerHTML = "00";
     timerHunds.innerHTML = "00";
+    resetBody();
     
+}function resetBody(){
+    document.body.style.backgroundImage = 'url(/Resources/startingLine.gif)'
+}
+function runningBody(){
+    document.body.style.backgroundImage = 'url(/Resources/BlossomRunnning.gif)'
 }
 function getLap(){
-    let lapMin = timerMinutes.textContent 
-    lapMin < 10 ? "0"+lapMin : lapMin;
-    let lapSec = timerSeconds.textContent
-    lapSec < 10 ? "0"+lapSec : lapSec;
-    let lapHunds = timerHunds.textContent
-    lapHunds < 10 ? "0"+lapHunds : lapHunds;
-
-    lapArray.push(`${lapMin}:${lapSec}:${lapHunds}`);
+    let newLap = `${startMin}:${startSec}:${startHunds}`
+    lapArray.push(newLap)
     return lapArray;
     
 }
-function displayLap(){
-    
+function showLaps(){
+    if (lapArray.length < 10) {
+      document.body.style.backgroundImage = 'url(/Resources/lap.gif)'
+      getLap();
+      let thisLap = lapArray[lapArray.length - 1];
+      let li = document.createElement("li");
+      li.appendChild(document.createTextNode(thisLap));
+      lapOl.appendChild(li);
+      setTimeout(runningBody,1200)
+      return lapArray;
+    }
 }
 //event handlers
 startBtn.addEventListener("click", startTimer)
@@ -171,3 +189,5 @@ stopBtn.addEventListener("click", stopTimer)
 stopBtn.addEventListener("touchmove", stopTimer)
 resetBtn.addEventListener("click", resetTimer)
 resetBtn.addEventListener("touchmove", resetTimer)
+lapBtn.addEventListener("click", showLaps)
+lapBtn.addEventListener("touchmove", showLaps)

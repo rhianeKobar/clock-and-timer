@@ -4,11 +4,15 @@
     text-align: center;
     
 }
+body{
+    background-image: url(/Resources/startingLine.gif);
+    background-size: cover;
+}
 #clock{
     margin: 0 auto;
     width: 600px;
-    height: 200px;
-    border: solid black 5px;
+    min-height: 200px;
+    border: solid black 2px;
     border-radius: 10px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -16,7 +20,7 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    background-color: darkgoldenrod;
+    background-color: rgb(66, 134, 189);
 }
 #longDate{
     display: flex;
@@ -33,6 +37,14 @@
     font-size: 2rem;
     flex-direction: row;
 }
+#lapOl{
+    display: flex;
+    font-size: 1.5rem;
+    flex-direction: column;
+}
+li{
+    margin:2%;
+}
 #buttons{
     display: flex;
     font-size: 1.5rem;
@@ -41,7 +53,7 @@
 button{
     border: solid black 1px;
     border-radius: 5px;
-    background-color: darkgoldenrod;
+    background-color: rgb(66, 134, 189);
     font-size: 1.5rem;
     margin-right: 20px;
     padding: 10px 20px; 
