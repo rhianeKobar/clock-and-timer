@@ -10,7 +10,7 @@ body{
 }
 #clock{
     margin: 0 auto;
-    width: 600px;
+    max-width: 600px;
     min-height: 200px;
     border: solid black 2px;
     border-radius: 10px;
