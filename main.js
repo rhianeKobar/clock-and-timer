@@ -135,11 +135,11 @@ function incrementTimer() {
     timerHunds.innerHTML = startHunds ;
 }
 function startTimer(){
-    document.body.style.backgroundImage = 'url(/Resources/BlossomRunnning.gif)'
+    document.body.style.backgroundImage = 'url(Resources/BlossomRunnning.gif)'
     startTiming = setInterval(incrementTimer, 100)
 }
 function stopTimer() {
-    document.body.style.backgroundImage = 'url(/Resources/freeze.gif)'
+    document.body.style.backgroundImage = 'url(Resources/freeze.gif)'
     clearInterval(startTiming);
 }
 function resetTimer(){
@@ -159,10 +159,10 @@ function resetTimer(){
     resetBody();
     
 }function resetBody(){
-    document.body.style.backgroundImage = 'url(/Resources/startingLine.gif)'
+    document.body.style.backgroundImage = 'url(Resources/startingLine.gif)'
 }
 function runningBody(){
-    document.body.style.backgroundImage = 'url(/Resources/BlossomRunnning.gif)'
+    document.body.style.backgroundImage = 'url(Resources/BlossomRunnning.gif)'
 }
 function getLap(){
     let newLap = `${startMin}:${startSec}:${startHunds}`
@@ -172,7 +172,7 @@ function getLap(){
 }
 function showLaps(){
     if (lapArray.length < 10) {
-      document.body.style.backgroundImage = 'url(/Resources/lap.gif)'
+      document.body.style.backgroundImage = 'url(Resources/lap.gif)'
       getLap();
       let thisLap = lapArray[lapArray.length - 1];
       let li = document.createElement("li");
